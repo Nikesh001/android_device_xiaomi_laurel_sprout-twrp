@@ -7,15 +7,7 @@ PRODUCT_PLATFORM := trinket
 # A/B updater
 AB_OTA_UPDATER := true
 
-AB_OTA_PARTITIONS += \
-    boot \
-    system \
-    vendor \
-    vbmeta \
-    dtbo
-
 PRODUCT_PACKAGES += \
-    otapreopt_script \
     update_engine \
     update_verifier
 
@@ -24,12 +16,6 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_PACKAGES_DEBUG += \
     update_engine_client
-
-AB_OTA_POSTINSTALL_CONFIG += \
-    RUN_POSTINSTALL_system=true \
-    POSTINSTALL_PATH_system=system/bin/otapreopt_script \
-    FILESYSTEM_TYPE_system=ext4 \
-    POSTINSTALL_OPTIONAL_system=true
 
 # Enable update engine sideloading by including the static version of the
 # boot_control HAL and its dependencies.
