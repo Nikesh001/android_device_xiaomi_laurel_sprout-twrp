@@ -1,0 +1,27 @@
+# Android fstab file.
+# The filesystem that contains the filesystem checker binary (typically /system) cannot
+# specify MF_CHECK, and must come before any filesystems that do specify MF_CHECK
+
+# mount point    fstype     device                 device2                        flags
+
+/bluetooth       emmc              /dev/block/bootdevice/by-name/bluetooth  flags=slotselect;backup=1;flashimg=1
+/modem           emmc              /dev/block/bootdevice/by-name/modem      flags=slotselect;backup=1;flashimg=1
+/system          ext4              /dev/block/bootdevice/by-name/system     flags=slotselect;backup=0
+/system_image    emmc              /dev/block/bootdevice/by-name/system     flags=slotselect
+/dtbo            emmc              /dev/block/bootdevice/by-name/dtbo       flags=slotselect;backup=1;display="Dtbo";flashimg=1
+/metadata	 ext4	           /dev/block/bootdevice/by-name/metadata
+/data            f2fs	           /dev/block/bootdevice/by-name/userdata   flags=fileencryption=ice:aes-256-cts
+/vendor          ext4              /dev/block/bootdevice/by-name/vendor     flags=slotselect;display="Vendor";backup=0;wipeingui
+/vendor_image    emmc              /dev/block/bootdevice/by-name/vendor     flags=slotselect
+/misc            emmc              /dev/block/bootdevice/by-name/misc
+/splash          emmc              /dev/block/bootdevice/by-name/splash     flags=slotselect;backup=1;flashimg=1
+/persist         ext4              /dev/block/bootdevice/by-name/persist    flags=display="Persist"
+/efs1		 emmc	           /dev/block/bootdevice/by-name/modemst1   flags=backup=1;display=EFS
+/efs2		 emmc	           /dev/block/bootdevice/by-name/modemst2   flags=backup=1;subpartitionof=/efs1
+/efsc		 emmc	           /dev/block/bootdevice/by-name/fsc        flags=backup=1;subpartitionof=/efs1
+/efsg		 emmc	           /dev/block/bootdevice/by-name/fsg        flags=backup=1;subpartitionof=/efs1
+/boot            emmc              /dev/block/bootdevice/by-name/boot       flags=slotselect;backup=1;flashimg=1
+
+# Removable storage
+/usb-otg         auto              /dev/block/sdg1         /dev/block/sdg   flags=removable;storage;display="USB OTG"
+/sdcard1         auto              /dev/block/mmcblk0p1                     flags=display="MicroSD";storage;wipeingui;removable

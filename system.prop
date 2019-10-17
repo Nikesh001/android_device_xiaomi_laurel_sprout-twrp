@@ -1,0 +1,4 @@
+ro.display.series=Xiaomi Mi A3
+ro.product.board=trinket
+ro.board.platform=trinket
+ro.build.version.security_patch=2025-12-31
